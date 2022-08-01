@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 import soundfile as sf
 import librosa
 import os
-import tempfile
-from scipy.io import wavfile
 
 from utils.plot import show_spec, show_wave
 

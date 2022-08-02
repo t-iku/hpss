@@ -22,7 +22,11 @@ def show(znt, fs):
     show_spec(znt, fs, stft_dict['n_fft'], ax=axes[1])
     return fig,axes
 
-
+st.set_page_config(
+    page_title="Music Decompose",
+    page_icon="random",
+    layout="wide"
+)
 st.title("Decompose Harmonic and Percussive Components with librosa")
 
 # uploaded_file = st.sidebar.file_uploader("Choose a file",type=["wav","mp3"])
@@ -46,7 +50,9 @@ if uploaded_file is not None:
         max_value=wav_len_sec
     )
 
-    st.pyplot(show(wav[start_sec*16000:end_sec*16000],16000)[0])
+    fig,_ = show(wav[start_sec*16000:end_sec*16000],16000)
+
+    st.pyplot(fig)
 
     if st.sidebar.button("analyze"):
         st.markdown("## Result")

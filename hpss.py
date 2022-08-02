@@ -25,14 +25,15 @@ def show(znt, fs):
 
 st.title("Decompose Harmonic and Percussive Components with librosa")
 
-uploaded_file = st.sidebar.file_uploader("Choose a file",type=["wav","mp3"])
+# uploaded_file = st.sidebar.file_uploader("Choose a file",type=["wav","mp3"])
+uploaded_file = st.sidebar.file_uploader("Choose a file",type=["wav"])
 
 if uploaded_file is not None:
     st.markdown("## Input File")
     if "wav" in uploaded_file.name[-4:]:
         st.audio(uploaded_file)
-    elif "mp3" in uploaded_file.name[-4:]:
-        st.audio(uploaded_file,format="audio/mp3")
+    # elif "mp3" in uploaded_file.name[-4:]:
+    #     st.audio(uploaded_file,format="audio/mp3")
     wav,fs = sf.read(uploaded_file)
     wav = librosa.resample(wav.T,orig_sr=fs,target_sr=16000).T
     wav = np.sum(wav,axis=1)

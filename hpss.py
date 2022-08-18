@@ -40,7 +40,8 @@ if uploaded_file is not None:
     #     st.audio(uploaded_file,format="audio/mp3")
     wav,fs = sf.read(uploaded_file)
     wav = librosa.resample(wav.T,orig_sr=fs,target_sr=16000).T
-    wav = np.sum(wav,axis=1)
+    if len(wav.shape)==2:
+        wav = np.sum(wav,axis=1)
 
     wav_len_sec = len(wav)//16000
     start_sec,end_sec = st.slider(
